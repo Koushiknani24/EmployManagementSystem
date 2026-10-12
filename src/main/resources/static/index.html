@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f766e" />
+  <title>PeopleDesk | Employee Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="PeopleDesk home"><span class="brand-mark">P</span><span>PeopleDesk</span></a>
+      <nav aria-label="Main navigation">
+        <a class="nav-link active" href="#dashboard"><span>▦</span> Overview</a>
+        <a class="nav-link" href="#employees"><span>♙</span> Employees</a>
+        <a class="nav-link" href="#departments"><span>◌</span> Departments</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-card"><span class="help-icon">?</span><div><strong>Need help?</strong><small>Manage your team in one place.</small></div></div><p>© 2026 PeopleDesk</p></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">WORKFORCE OVERVIEW</p><h1>Good morning, Admin <span aria-hidden="true">✦</span></h1><p class="subtle" id="today"></p></div>
+        <button class="primary-button" id="openAdd"><span>＋</span> Add employee</button>
+      </header>
+
+      <section class="stats-grid" aria-label="Employee statistics">
+        <article class="stat-card teal"><div><p>Total employees</p><strong id="totalCount">0</strong><small id="totalDelta">Live team count</small></div><span class="stat-icon">♙</span></article>
+        <article class="stat-card violet"><div><p>Departments</p><strong id="departmentCount">0</strong><small>Across your organization</small></div><span class="stat-icon">◌</span></article>
+        <article class="stat-card amber"><div><p>Average salary</p><strong id="averageSalary">₹0</strong><small>Based on employee records</small></div><span class="stat-icon">⌁</span></article>
+      </section>
+
+      <section class="content-grid" id="dashboard">
+        <article class="panel department-panel" id="departments"><div class="panel-heading"><div><p class="eyebrow">TEAM COMPOSITION</p><h2>Departments</h2></div></div><div id="departmentBars" class="department-bars"><p class="empty-inline">No employee data yet.</p></div></article>
+        <article class="panel welcome-panel"><span class="sparkle">✦</span><p class="eyebrow">PEOPLEDESK</p><h2>Everything your team needs, in one place.</h2><p>Keep employee details accurate and your organization connected.</p><button class="text-button" id="welcomeAdd">Add your first employee <span>→</span></button></article>
+      </section>
+
+      <section class="panel employees-panel" id="employees">
+        <div class="panel-heading employees-heading"><div><p class="eyebrow">DIRECTORY</p><h2>Employees</h2><p class="subtle" id="employeeSummary">Loading team members…</p></div><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search employees" aria-label="Search employees" /></label></div>
+        <div class="table-wrap"><table><thead><tr><th>Employee</th><th>Department</th><th>Annual salary</th><th></th></tr></thead><tbody id="employeeRows"></tbody></table></div>
+        <div class="empty-state" id="emptyState" hidden><div class="empty-icon">♙</div><h3>No employees found</h3><p>Add a team member to start building your directory.</p><button class="primary-button" id="emptyAdd">Add employee</button></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="employeeDialog"><form id="employeeForm" method="dialog"><div class="dialog-heading"><div><p class="eyebrow" id="formKicker">NEW EMPLOYEE</p><h2 id="formTitle">Add employee</h2></div><button class="close-button" type="button" id="closeDialog" aria-label="Close">×</button></div><input type="hidden" id="employeeId" /><div class="form-grid"><label>Full name<input id="name" name="name" required maxlength="120" placeholder="e.g. Priya Sharma" /></label><label>Email address<input id="email" name="email" required type="email" maxlength="160" placeholder="name@company.com" /></label><label>Department<input id="department" name="department" required maxlength="100" placeholder="e.g. Engineering" /></label><label>Annual salary (₹)<input id="salary" name="salary" required min="0" step="1000" type="number" placeholder="e.g. 850000" /></label></div><p class="form-error" id="formError" role="alert"></p><div class="dialog-actions"><button class="secondary-button" type="button" id="cancelDialog">Cancel</button><button class="primary-button" id="saveButton" type="submit">Save employee</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
